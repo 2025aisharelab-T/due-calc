@@ -382,6 +382,341 @@
       color: var(--slate-500);
     }
 
+    /* Interactive Calendar View Section */
+    .calendar-view-section {
+      padding: 1.75rem;
+      margin-bottom: 1.75rem;
+      background: #ffffff;
+    }
+
+    .calendar-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .calendar-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .calendar-mode-toggle {
+      display: flex;
+      background-color: var(--slate-100);
+      padding: 3px;
+      border-radius: var(--radius-md);
+      gap: 3px;
+      border: 1px solid var(--slate-200);
+    }
+
+    .cal-mode-btn {
+      padding: 0.375rem 0.75rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: none;
+      background: transparent;
+      color: var(--slate-600);
+      border-radius: calc(var(--radius-md) - 3px);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .cal-mode-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 1px 2px rgba(79, 70, 229, 0.2);
+    }
+
+    .month-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 0.25rem 0.5rem;
+    }
+
+    .btn-month-nav {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--slate-200);
+      background: #ffffff;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--slate-700);
+      transition: all 0.15s ease;
+    }
+
+    .btn-month-nav:hover {
+      background: var(--primary-50);
+      color: var(--primary);
+      border-color: var(--primary-200);
+    }
+
+    .current-month-text {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      min-width: 105px;
+      text-align: center;
+    }
+
+    .btn-month-action {
+      height: 28px;
+      padding: 0 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--slate-600);
+      background: #ffffff;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-month-action:hover {
+      background: var(--slate-100);
+      color: var(--slate-900);
+    }
+
+    .calendar-hint {
+      font-size: 0.8125rem;
+      color: var(--slate-600);
+      margin-bottom: 1rem;
+      background: var(--primary-50);
+      border: 1px dashed var(--primary-200);
+      padding: 0.625rem 0.875rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+
+    /* Cal Grid */
+    .interactive-cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-bottom: 0.875rem;
+    }
+
+    .cal-day-header {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--slate-500);
+      padding: 0.5rem 0;
+      background: var(--slate-50);
+      border-radius: var(--radius-sm);
+    }
+
+    .cal-day-header.sun { color: var(--rose-500); }
+    .cal-day-header.sat { color: #2563eb; }
+
+    .cal-cell {
+      min-height: 62px;
+      padding: 0.375rem;
+      border: 1px solid var(--slate-200);
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .cal-cell:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      z-index: 2;
+    }
+
+    .cal-cell.other-month {
+      opacity: 0.38;
+      background-color: var(--slate-50);
+    }
+
+    .cal-cell-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cal-cell-num {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--slate-700);
+      line-height: 1;
+    }
+
+    .cal-cell.is-sun .cal-cell-num { color: var(--rose-500); }
+    .cal-cell.is-sat .cal-cell-num { color: #2563eb; }
+
+    .cal-cell.is-today-dot::after {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background-color: var(--amber-500);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .cal-cell-badges {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-top: 4px;
+    }
+
+    .cal-badge {
+      font-size: 0.625rem;
+      font-weight: 800;
+      padding: 1px 4px;
+      border-radius: 4px;
+      line-height: 1.2;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Cell states */
+    .cal-cell.is-start {
+      background: #eff6ff !important;
+      border: 2px solid #2563eb !important;
+      box-shadow: 0 0 0 1px #2563eb;
+    }
+    .cal-cell.is-start .cal-cell-num {
+      color: #1d4ed8;
+      font-weight: 800;
+    }
+
+    .cal-cell.is-work-end {
+      background: #fdf2f8 !important;
+      border: 2px solid var(--primary) !important;
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.25);
+    }
+    .cal-cell.is-work-end .cal-cell-num {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .cal-cell.is-cal-end {
+      border: 2px dashed var(--slate-500);
+    }
+
+    .cal-cell.in-work-range {
+      background-color: #f5f7ff;
+    }
+
+    .cal-cell.is-holiday-cell {
+      background-color: #fff1f2;
+    }
+
+    .cal-cell.is-custom-cell {
+      background-color: #faf5ff;
+    }
+
+    .badge-start {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    .badge-work-end {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 1px 3px rgba(79, 70, 229, 0.4);
+    }
+
+    .badge-cal-end {
+      background: var(--slate-700);
+      color: #ffffff;
+    }
+
+    .badge-holiday {
+      background: var(--rose-50);
+      color: var(--rose-700);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+    }
+
+    .badge-custom {
+      background: var(--purple-50);
+      color: var(--purple-700);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    /* Legend */
+    .calendar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.125rem;
+      padding-top: 0.875rem;
+      border-top: 1px dashed var(--slate-200);
+      font-size: 0.75rem;
+      color: var(--slate-600);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .legend-dot.start { background: #2563eb; }
+    .legend-dot.work-range { background: #e0e7ff; border: 1px solid #c7d2fe; }
+    .legend-dot.work-end { background: var(--primary); }
+    .legend-dot.cal-end { background: var(--slate-700); }
+    .legend-dot.holiday { background: var(--rose-500); }
+    .legend-dot.custom { background: var(--purple-500); }
+    .legend-dot.today { background: var(--amber-500); border-radius: 50%; }
+
+    /* Task name badge on result cards */
+    .card-task-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      color: var(--slate-800);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      padding: 0.25rem 0.625rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.625rem;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .work-card .card-task-banner {
+      background: var(--primary-100);
+      border-color: var(--primary-200);
+      color: var(--primary-hover);
+    }
+
     /* Comparison Results Section */
     .results-grid {
       display: grid;
@@ -1004,6 +1339,17 @@
         <span>업무 일정 및 계산 조건 설정</span>
       </h2>
 
+      <!-- 업무명 입력란 -->
+      <div class="form-group" style="margin-bottom: 1.25rem;">
+        <label class="form-label" for="taskName">
+          <span>업무명 (작업 명칭)</span>
+          <span class="form-label-hint">선택 사항 • 기재 시 결과 카드 및 보고용 텍스트에 표기됩니다</span>
+        </label>
+        <div class="input-wrapper">
+          <input type="text" id="taskName" class="form-input" placeholder="예: 2026년 4분기 경영실적 보고서 작성, 결제 모듈 리팩토링, 세무 결산 등" maxlength="60" />
+        </div>
+      </div>
+
       <div class="form-grid">
         <!-- 시작일 -->
         <div class="form-group">
@@ -1067,7 +1413,69 @@
       </div>
     </section>
 
-    <!-- 2. Result Comparison Section -->
+    <!-- 2. Interactive Calendar View & Date Selection Section -->
+    <section class="card calendar-view-section" aria-label="인터랙티브 달력">
+      <div class="calendar-header-bar">
+        <h2 class="section-title" style="margin-bottom: 0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" color="var(--primary)">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <span>인터랙티브 달력 (일정 시각화 & 날짜 직접 지정)</span>
+        </h2>
+
+        <div class="calendar-controls">
+          <div class="calendar-mode-toggle" role="radiogroup" aria-label="달력 클릭 동작 모드">
+            <button type="button" class="cal-mode-btn active" id="btnModeStart" data-mode="start" title="클릭한 날짜를 시작일로 지정합니다">
+              🚩 시작일 지정
+            </button>
+            <button type="button" class="cal-mode-btn" id="btnModeTarget" data-mode="target" title="클릭한 날짜까지의 소요 일수를 자동 역계산합니다">
+              🎯 목표 마감일 지정 (역계산)
+            </button>
+          </div>
+
+          <div class="month-nav">
+            <button type="button" class="btn-month-nav" id="btnPrevMonth" title="이전 달">&lt;</button>
+            <span id="calCurrentMonthLabel" class="current-month-text">2026년 10월</span>
+            <button type="button" class="btn-month-nav" id="btnNextMonth" title="다음 달">&gt;</button>
+            <button type="button" class="btn-month-action" id="btnGoTodayMonth">오늘</button>
+            <button type="button" class="btn-month-action" id="btnGoDeadlineMonth" title="마감일이 있는 달로 이동">마감달</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="calendar-hint" id="calModeHint">
+        <span>💡 <strong>[시작일 지정 모드]</strong> 달력에서 원하는 날짜를 클릭하면 해당 날짜가 시작일로 즉시 설정됩니다.</span>
+      </div>
+
+      <div class="interactive-cal-grid" id="calGridHeader">
+        <div class="cal-day-header sun">일</div>
+        <div class="cal-day-header">월</div>
+        <div class="cal-day-header">화</div>
+        <div class="cal-day-header">수</div>
+        <div class="cal-day-header">목</div>
+        <div class="cal-day-header">금</div>
+        <div class="cal-day-header sat">토</div>
+      </div>
+
+      <div class="interactive-cal-grid" id="calGridDates">
+        <!-- JS 동적 생성 -->
+      </div>
+
+      <div class="calendar-legend">
+        <span class="legend-item"><span class="legend-dot start"></span>시작일</span>
+        <span class="legend-item"><span class="legend-dot work-range"></span>근무일 (영업일)</span>
+        <span class="legend-item"><span class="legend-dot work-end"></span>근무일 마감</span>
+        <span class="legend-item"><span class="legend-dot cal-end"></span>달력 마감</span>
+        <span class="legend-item"><span class="legend-dot holiday"></span>법정공휴일</span>
+        <span class="legend-item"><span class="legend-dot custom"></span>맞춤 휴일</span>
+        <span class="legend-item"><span class="legend-dot today"></span>오늘 날짜</span>
+      </div>
+    </section>
+
+    <!-- 3. Result Comparison Section -->
     <div class="results-grid" aria-label="마감일 계산 결과">
       
       <!-- 카드 1: 달력 기준 마감일 -->
@@ -1086,6 +1494,7 @@
         </div>
 
         <div class="date-display-box">
+          <div id="calTaskBanner" class="card-task-banner" style="display: none;"></div>
           <div id="calDateText" class="result-date-title">-</div>
           <div id="calDateSub" class="result-date-sub">주말과 공휴일을 포함한 단순 일수 마감</div>
         </div>
@@ -1116,6 +1525,7 @@
         </div>
 
         <div class="date-display-box">
+          <div id="workTaskBanner" class="card-task-banner" style="display: none;"></div>
           <div id="workDateText" class="result-date-title">-</div>
           <div id="workDateSub" class="result-date-sub">주말 및 법정·맞춤 휴일을 제외한 실업무 마감</div>
         </div>
@@ -1334,17 +1744,32 @@
        2. 상태 관리 (State)
        ========================================================================== */
     const state = {
+      taskName: '',
       startDateStr: '',
       durationDays: 10,
       includeStartDate: true,
       excludeHolidays: true,
       customHolidays: {}, // { 'YYYY-MM-DD': '휴일명' }
-      holidayFilter: 'all'
+      holidayFilter: 'all',
+      calViewYear: 2026,
+      calViewMonth: 10, // 1 ~ 12
+      calSelectMode: 'start' // 'start' | 'target'
     };
 
     /* ==========================================================================
-       3. 날짜 유틸리티 함수 (타임존 안전 처리)
+       3. 날짜 및 유틸리티 함수 (타임존 안전 처리)
        ========================================================================== */
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag));
+    }
+
     function formatZero(n) {
       return String(n).padStart(2, '0');
     }
@@ -1380,6 +1805,36 @@
 
     function formatMonthDay(d) {
       return `${d.getMonth() + 1}/${d.getDate()}`;
+    }
+
+    /* 목표 마감일까지의 순수 근무일수 역계산 함수 */
+    function countWorkingDays(startDateStr, targetDateStr, includeStartDate, excludeHolidays, customHolidays = {}) {
+      const start = parseDate(startDateStr);
+      const target = parseDate(targetDateStr);
+      if (target < start) return 0;
+
+      let curr = new Date(start);
+      if (!includeStartDate) {
+        curr.setDate(curr.getDate() + 1);
+      }
+
+      let count = 0;
+      let safety = 0;
+      while (curr <= target && safety < 1500) {
+        safety++;
+        const dayOfWeek = curr.getDay();
+        const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
+        const dStr = toDateStr(curr);
+        const isCustom = !!customHolidays[dStr];
+        const isBuiltin = excludeHolidays && !!BUILTIN_HOLIDAYS[dStr];
+        const isHoliday = isCustom || isBuiltin;
+
+        if (!isWeekend && !isHoliday) {
+          count++;
+        }
+        curr.setDate(curr.getDate() + 1);
+      }
+      return count;
     }
 
     /* D-Day 계산 */
@@ -1577,15 +2032,206 @@
         });
       }
 
-      // 5. 보고용 복사 텍스트 업데이트
-      // 포맷: [업무 기한 안내] 시작일: 2026-10-30 / 소요 기간: 10일 / 달력 기준 마감: 2026-11-08(일, D-9) / 근무일 기준 마감: 2026-11-12(목, D-13)
-      const reportStr = `[업무 기한 안내] 시작일: ${toDateStr(start)} / 소요 기간: ${duration}일 / 달력 기준 마감: ${formatReportDateWithDDay(calEnd, calDDay.reportText)} / 근무일 기준 마감: ${formatReportDateWithDDay(workEnd, workDDay.reportText)}`;
+      // 5. 업무명 배지 반영
+      const calTaskBanner = document.getElementById('calTaskBanner');
+      const workTaskBanner = document.getElementById('workTaskBanner');
+      if (state.taskName) {
+        const bannerHtml = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+          </svg>
+          <span>업무명: ${escapeHtml(state.taskName)}</span>
+        `;
+        calTaskBanner.innerHTML = bannerHtml;
+        calTaskBanner.style.display = 'inline-flex';
+        workTaskBanner.innerHTML = bannerHtml;
+        workTaskBanner.style.display = 'inline-flex';
+      } else {
+        calTaskBanner.style.display = 'none';
+        workTaskBanner.style.display = 'none';
+      }
+
+      // 6. 보고용 복사 텍스트 업데이트
+      // 포맷: [업무 기한 안내] (업무명: ...) 시작일: 2026-10-30 / 소요 기간: 10일 / 달력 기준 마감: 2026-11-08(일, D-9) / 근무일 기준 마감: 2026-11-12(목, D-13)
+      const taskPart = state.taskName ? `업무명: ${state.taskName} / ` : '';
+      const reportStr = `[업무 기한 안내] ${taskPart}시작일: ${toDateStr(start)} / 소요 기간: ${duration}일 / 달력 기준 마감: ${formatReportDateWithDDay(calEnd, calDDay.reportText)} / 근무일 기준 마감: ${formatReportDateWithDDay(workEnd, workDDay.reportText)}`;
       document.getElementById('copyPreviewText').textContent = reportStr;
 
-      // 6. 칩 버튼 활성 상태 동기화
+      // 7. 칩 버튼 활성 상태 동기화
       document.querySelectorAll('.chip-btn').forEach(btn => {
         const days = parseInt(btn.dataset.days, 10);
         btn.classList.toggle('active', days === duration);
+      });
+
+      // 8. 인터랙티브 시각화 달력 렌더링
+      renderCalendar(result);
+    }
+
+    /* ==========================================================================
+       6-1. 인터랙티브 달력 렌더링 및 날짜 클릭 제어
+       ========================================================================== */
+    function handleCalendarDateClick(dStr) {
+      if (state.calSelectMode === 'start') {
+        state.startDateStr = dStr;
+        document.getElementById('startDate').value = dStr;
+        const [y, m] = dStr.split('-').map(Number);
+        state.calViewYear = y;
+        state.calViewMonth = m;
+        render();
+        showToast(`시작일이 ${dStr}로 지정되었습니다.`);
+      } else {
+        if (dStr < state.startDateStr) {
+          showToast('목표 마감일은 시작일 이후의 날짜여야 합니다.');
+          return;
+        }
+        const workingDays = countWorkingDays(
+          state.startDateStr,
+          dStr,
+          state.includeStartDate,
+          state.excludeHolidays,
+          state.customHolidays
+        );
+
+        if (workingDays < 1) {
+          showToast('선택한 기간 내에 실제 근무일(영업일)이 없습니다.');
+          return;
+        }
+
+        state.durationDays = workingDays;
+        document.getElementById('durationDays').value = workingDays;
+        render();
+        showToast(`목표일(${dStr})까지 소요 근무일(${workingDays}일)로 설정되었습니다!`);
+      }
+    }
+
+    function renderCalendar(result) {
+      const gridDates = document.getElementById('calGridDates');
+      if (!gridDates) return;
+      gridDates.innerHTML = '';
+
+      const monthLabel = document.getElementById('calCurrentMonthLabel');
+      monthLabel.textContent = `${state.calViewYear}년 ${state.calViewMonth}월`;
+
+      const startStr = state.startDateStr;
+      const calEndStr = result ? toDateStr(result.calEnd) : '';
+      const workEndStr = result ? toDateStr(result.workEnd) : '';
+      const todayStr = toDateStr(new Date());
+
+      const year = state.calViewYear;
+      const month = state.calViewMonth;
+
+      const firstDayIndex = new Date(year, month - 1, 1).getDay();
+      const daysInCurrent = new Date(year, month, 0).getDate();
+      const daysInPrev = new Date(year, month - 1, 0).getDate();
+
+      const days = [];
+
+      // 이전 달 뒷부분 날짜
+      for (let i = firstDayIndex - 1; i >= 0; i--) {
+        const d = daysInPrev - i;
+        const prevM = month === 1 ? 12 : month - 1;
+        const prevY = month === 1 ? year - 1 : year;
+        const dStr = `${prevY}-${formatZero(prevM)}-${formatZero(d)}`;
+        days.push({
+          dateStr: dStr,
+          dayNum: d,
+          isOtherMonth: true,
+          dayOfWeek: new Date(prevY, prevM - 1, d, 12, 0, 0).getDay()
+        });
+      }
+
+      // 이번 달 날짜
+      for (let d = 1; d <= daysInCurrent; d++) {
+        const dStr = `${year}-${formatZero(month)}-${formatZero(d)}`;
+        days.push({
+          dateStr: dStr,
+          dayNum: d,
+          isOtherMonth: false,
+          dayOfWeek: new Date(year, month - 1, d, 12, 0, 0).getDay()
+        });
+      }
+
+      // 다음 달 앞부분 날짜 (35 또는 42칸 완성)
+      const totalCells = days.length <= 35 ? 35 : 42;
+      const remaining = totalCells - days.length;
+      for (let d = 1; d <= remaining; d++) {
+        const nextM = month === 12 ? 1 : month + 1;
+        const nextY = month === 12 ? year + 1 : year;
+        const dStr = `${nextY}-${formatZero(nextM)}-${formatZero(d)}`;
+        days.push({
+          dateStr: dStr,
+          dayNum: d,
+          isOtherMonth: true,
+          dayOfWeek: new Date(nextY, nextM - 1, d, 12, 0, 0).getDay()
+        });
+      }
+
+      days.forEach(day => {
+        const dStr = day.dateStr;
+        const isSun = day.dayOfWeek === 0;
+        const isSat = day.dayOfWeek === 6;
+
+        const isStart = (dStr === startStr);
+        const isCalEnd = (dStr === calEndStr);
+        const isWorkEnd = (dStr === workEndStr);
+        const inWorkRange = (startStr && workEndStr && dStr >= startStr && dStr <= workEndStr);
+
+        const isCustom = !!state.customHolidays[dStr];
+        const isBuiltin = state.excludeHolidays && !!BUILTIN_HOLIDAYS[dStr];
+        const isHoliday = isCustom || isBuiltin;
+        const holidayName = isCustom ? state.customHolidays[dStr] : (isBuiltin ? BUILTIN_HOLIDAYS[dStr] : null);
+
+        const isToday = (dStr === todayStr);
+
+        const cell = document.createElement('div');
+        cell.className = 'cal-cell';
+        if (day.isOtherMonth) cell.classList.add('other-month');
+        if (isSun) cell.classList.add('is-sun');
+        if (isSat) cell.classList.add('is-sat');
+        if (isToday) cell.classList.add('is-today-dot');
+
+        if (isStart) cell.classList.add('is-start');
+        else if (isWorkEnd) cell.classList.add('is-work-end');
+        else if (inWorkRange) cell.classList.add('in-work-range');
+
+        if (isCalEnd && !isWorkEnd) cell.classList.add('is-cal-end');
+        if (isHoliday) {
+          if (isCustom) cell.classList.add('is-custom-cell');
+          else cell.classList.add('is-holiday-cell');
+        }
+
+        // 뱃지 내용 구성
+        let badgesHtml = '';
+        if (isStart) {
+          badgesHtml += '<span class="cal-badge badge-start">🚩 시작</span>';
+        }
+        if (isWorkEnd) {
+          badgesHtml += '<span class="cal-badge badge-work-end">🎯 근무마감</span>';
+        }
+        if (isCalEnd && !isWorkEnd) {
+          badgesHtml += '<span class="cal-badge badge-cal-end">🏁 달력마감</span>';
+        }
+        if (holidayName) {
+          badgesHtml += `<span class="cal-badge ${isCustom ? 'badge-custom' : 'badge-holiday'}">${escapeHtml(holidayName)}</span>`;
+        }
+
+        cell.innerHTML = `
+          <div class="cal-cell-top">
+            <span class="cal-cell-num">${day.dayNum}</span>
+          </div>
+          <div class="cal-cell-badges">
+            ${badgesHtml}
+          </div>
+        `;
+
+        cell.title = `${dStr} (${DAY_NAMES[day.dayOfWeek]}) - 클릭하여 지정`;
+
+        cell.addEventListener('click', () => {
+          handleCalendarDateClick(dStr);
+        });
+
+        gridDates.appendChild(cell);
       });
     }
 
@@ -1727,6 +2373,9 @@
       // 시작일 기본값: 오늘 날짜
       const today = new Date();
       state.startDateStr = toDateStr(today);
+      state.calViewYear = today.getFullYear();
+      state.calViewMonth = today.getMonth() + 1;
+
       const startDateInput = document.getElementById('startDate');
       startDateInput.value = state.startDateStr;
 
@@ -1737,10 +2386,20 @@
       // 맞춤 휴일 기본 날짜 세팅
       document.getElementById('customHolidayDate').value = state.startDateStr;
 
+      // 0. 업무명 입력 이벤트
+      const taskNameInput = document.getElementById('taskName');
+      taskNameInput.addEventListener('input', (e) => {
+        state.taskName = e.target.value.trim();
+        render();
+      });
+
       // 1. 입력 변경 이벤트
       startDateInput.addEventListener('change', (e) => {
         if (e.target.value) {
           state.startDateStr = e.target.value;
+          const [y, m] = state.startDateStr.split('-').map(Number);
+          state.calViewYear = y;
+          state.calViewMonth = m;
           render();
         }
       });
@@ -1755,8 +2414,11 @@
 
       // '오늘' 버튼
       document.getElementById('btnSetToday').addEventListener('click', () => {
-        state.startDateStr = toDateStr(new Date());
+        const now = new Date();
+        state.startDateStr = toDateStr(now);
         startDateInput.value = state.startDateStr;
+        state.calViewYear = now.getFullYear();
+        state.calViewMonth = now.getMonth() + 1;
         render();
         showToast('시작일을 오늘로 설정했습니다.');
       });
@@ -1798,6 +2460,63 @@
       chkHolidays.addEventListener('change', (e) => {
         state.excludeHolidays = e.target.checked;
         render();
+      });
+
+      // 달력 모드 토글 (시작일 지정 vs 목표 마감일 지정)
+      const btnModeStart = document.getElementById('btnModeStart');
+      const btnModeTarget = document.getElementById('btnModeTarget');
+      const calModeHint = document.getElementById('calModeHint');
+
+      btnModeStart.addEventListener('click', () => {
+        state.calSelectMode = 'start';
+        btnModeStart.classList.add('active');
+        btnModeTarget.classList.remove('active');
+        calModeHint.innerHTML = '<span>💡 <strong>[시작일 지정 모드]</strong> 달력에서 원하는 날짜를 클릭하면 해당 날짜가 시작일로 즉시 설정됩니다.</span>';
+      });
+
+      btnModeTarget.addEventListener('click', () => {
+        state.calSelectMode = 'target';
+        btnModeTarget.classList.add('active');
+        btnModeStart.classList.remove('active');
+        calModeHint.innerHTML = '<span>🎯 <strong>[목표 마감일 역계산 모드]</strong> 달력에서 목표 마감일을 클릭하면 시작일부터의 소요 근무일이 자동 계산되어 설정됩니다.</span>';
+      });
+
+      // 달력 월 네비게이션
+      document.getElementById('btnPrevMonth').addEventListener('click', () => {
+        if (state.calViewMonth === 1) {
+          state.calViewYear--;
+          state.calViewMonth = 12;
+        } else {
+          state.calViewMonth--;
+        }
+        render();
+      });
+
+      document.getElementById('btnNextMonth').addEventListener('click', () => {
+        if (state.calViewMonth === 12) {
+          state.calViewYear++;
+          state.calViewMonth = 1;
+        } else {
+          state.calViewMonth++;
+        }
+        render();
+      });
+
+      document.getElementById('btnGoTodayMonth').addEventListener('click', () => {
+        const t = new Date();
+        state.calViewYear = t.getFullYear();
+        state.calViewMonth = t.getMonth() + 1;
+        render();
+      });
+
+      document.getElementById('btnGoDeadlineMonth').addEventListener('click', () => {
+        const res = calculate();
+        if (res && res.workEnd) {
+          state.calViewYear = res.workEnd.getFullYear();
+          state.calViewMonth = res.workEnd.getMonth() + 1;
+          render();
+          showToast(`근무일 마감달(${state.calViewYear}년 ${state.calViewMonth}월)로 이동했습니다.`);
+        }
       });
 
       // 복사 버튼
