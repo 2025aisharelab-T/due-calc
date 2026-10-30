@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/deadline-calc/index.html" },
+    { "source": "/deadline-calc", "destination": "/deadline-calc/index.html" },
+    { "source": "/(.*)", "destination": "/deadline-calc/$1" }
+  ]
+}
